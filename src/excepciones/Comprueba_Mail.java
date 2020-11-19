@@ -8,16 +8,16 @@ public class Comprueba_Mail {
 	public static void main(String[] args) {
 			
 		String el_mail=JOptionPane.showInputDialog("Introduce mail");
-		
 		try {
 			examina_mail(el_mail);
-		} catch (EOFException e) {
+		} catch (Longitud_mail_erroneo e) {
 			// TODO Auto-generated catch block
-			System.out.println("El mail no es correcto");
+			e.printStackTrace();//imprime la pila de llaada de este error
 		}
+		
 	}
 
-		static void examina_mail(String mail) throws EOFException{
+		static void examina_mail(String mail) throws Longitud_mail_erroneo{
 			
 			int arroba=0;
 			
@@ -26,8 +26,9 @@ public class Comprueba_Mail {
 			
 			if(mail.length()<=3){//si el email es menor o igual a 3 lanzar una excepcion
 				 
-				throw new EOFException();
-		
+				//throw Longitud_mail_erroneo;
+				
+				throw new Longitud_mail_erroneo();
 			}
 			
 			for(int i=0;i<mail.length();i++){
@@ -46,4 +47,21 @@ public class Comprueba_Mail {
 			}
 		}
 }
+//====================Excepcon propia======================
+class Longitud_mail_erroneo extends Exception{
+
+		public Longitud_mail_erroneo(){
+			
+		}
+		public Longitud_mail_erroneo(String msj_error){
+			
+			super(msj_error);
+		}
+	
+}
+
+
+
+
+
 
